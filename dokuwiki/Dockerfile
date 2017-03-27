@@ -9,7 +9,7 @@ ENV TERM xterm
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get -y upgrade && \
-    apt-get -y -f install wget lighttpd php7.0-cgi php7.0-gd php7.0-ldap nano iputils-ping build-essential php-mbstring php7.0-xml net-tools && \
+    apt-get -y -f install wget lighttpd php7.0-cgi php7.0-gd php7.0-ldap nano iputils-ping build-essential php-mbstring php7.0-xml net-tools telnet && \
     apt-get clean autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
