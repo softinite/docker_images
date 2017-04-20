@@ -9,7 +9,13 @@ CMD ["/sbin/my_init"]
 
 RUN apt-get update && \
     apt-get -y -f upgrade && \
-    apt-get install -f -y nano iputils-ping build-essential net-tools telnet apache2-utils
+    apt-get install -f -y nano iputils-ping build-essential net-tools telnet apache2-utils libssl-dev git
+
+RUN cd /home && \
+    git clone https://github.com/wg/wrk.git && \
+    cd wrk && \
+    make && \
+    cp wrk /usr/local/bin
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
