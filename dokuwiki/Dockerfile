@@ -22,6 +22,8 @@ RUN wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwik
 
 # Set up ownership
 ADD info.php /dokuwiki/info.php
+ADD local.php /dokuwiki/conf/local.protected.php
+ADD users.php /dokuwiki/conf/users.auth.php
 
 RUN chown -R www-data:www-data /dokuwiki
 
