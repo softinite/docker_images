@@ -24,6 +24,7 @@ RUN wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwik
 ADD info.php /dokuwiki/info.php
 ADD local.php /dokuwiki/conf/local.protected.php
 ADD users.php /dokuwiki/conf/users.auth.php
+ADD mime.conf /dokuwiki/conf/mime.local.conf
 
 RUN chown -R www-data:www-data /dokuwiki
 
