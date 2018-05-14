@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.21
+FROM phusion/baseimage:0.10.1
 MAINTAINER Sergiu Ivasenco <contact@softinite.com>
 
 # Use baseimage-docker's init system.
@@ -6,8 +6,8 @@ CMD ["/sbin/my_init"]
 
 ENV TERM xterm
 #at the time of the writting, wrk had dependency on lua 5.1
-ENV LUA_VERSION "5.1"
-ENV LUA_ROCKS_VERSION "2.4.2"
+ENV LUA_VERSION "5.3"
+ENV LUA_ROCKS_VERSION "2.4.4"
 
 RUN apt-get update && \
     apt-get -y -f upgrade && \
@@ -17,8 +17,10 @@ RUN cd /home && \
     git clone https://github.com/wg/wrk.git && \
     cd wrk && \
     make && \
-    cp wrk /usr/local/bin
+    cp wrk /usr/local/bin && \
+    mkdir /test
 
+ADD benchmarkTest.sh /test/benchmarkTest.sh
 
 RUN echo "lua version=$LUA_VERSION"
 
