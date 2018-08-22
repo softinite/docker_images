@@ -26,6 +26,9 @@ ADD info.php /dokuwiki/info.php
 ADD local.php /dokuwiki/conf/local.protected.php
 ADD users.php /dokuwiki/conf/users.auth.php
 ADD mime.conf /dokuwiki/conf/mime.local.conf
+RUN mkdir -p /dokuwiki/data && \
+    mkdir -p /dokuwiki/data/pages && \
+    mkdir -p /dokuwiki/data/attic
 
 RUN chown -R www-data:www-data /dokuwiki
 
