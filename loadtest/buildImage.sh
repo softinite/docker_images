@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build -t loadtest .
+docker build -t loadtest:$1 .

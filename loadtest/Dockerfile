@@ -1,20 +1,19 @@
-FROM phusion/baseimage:0.10.1
+FROM phusion/baseimage:0.11
 MAINTAINER Sergiu Ivasenco <contact@softinite.com>
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
 ENV TERM xterm
-#at the time of the writting, wrk had dependency on lua 5.1
 ENV LUA_VERSION "5.3"
-ENV LUA_ROCKS_VERSION "2.4.4"
+ENV LUA_ROCKS_VERSION "3.2.1"
 
 RUN apt-get update && \
     apt-get -y -f upgrade && \
-    apt-get install -f -y nano iputils-ping build-essential net-tools telnet apache2-utils libssl-dev git curl wget unzip libreadline-dev
+    apt-get install -f -y libz-dev nano iputils-ping build-essential net-tools telnet apache2-utils libssl-dev git curl wget unzip libreadline-dev
 
 RUN cd /home && \
-    git clone https://github.com/wg/wrk.git && \
+    git clone https://github.com/giltene/wrk2.git wrk && \
     cd wrk && \
     make && \
     cp wrk /usr/local/bin && \

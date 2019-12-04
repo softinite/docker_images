@@ -13,19 +13,17 @@ RUN apt-get update && \
 
 # Install Java.
 RUN \
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  add-apt-repository -y ppa:webupd8team/java && \
-  apt-get update && \
-  apt-get install -y oracle-java8-installer && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm -rf /var/cache/oracle-jdk8-installer
+  wget https://download.java.net/java/GA/jdk12.0.1/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-12.0.1_linux-x64_bin.tar.gz --no-check-certificate && \
+  tar xfvz openjdk-12.0.1_linux-x64_bin.tar.gz && \
+  mv -fv jdk-12.0.1 /usr/lib/jvm/
 
 
 # Define working directory.
 WORKDIR /usr/local
 
 # Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV JAVA_HOME /usr/lib/jvm/jdk-12.0.1
+ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 
 # Clean up APT when done.
