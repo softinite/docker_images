@@ -1,0 +1,1 @@
+docker run -d -v "/home/softinite/Documents/code:/code" --name node1214_c node1214
