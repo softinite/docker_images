@@ -8,7 +8,7 @@ ENV TERM xterm
 # Update & install packages & cleanup afterwards
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
-    apt-get -y -f install wget lighttpd php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath nano iputils-ping build-essential net-tools telnet && \
+    apt-get -y -f install wget lighttpd php php-cli php-cgi php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath nano iputils-ping build-essential net-tools telnet && \
     apt-get clean autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
