@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.11
+FROM phusion/baseimage:focal-1.0.0
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
@@ -7,9 +7,8 @@ ENV TERM xterm
 
 # Update & install packages & cleanup afterwards
 RUN DEBIAN_FRONTEND=noninteractive \
-    apt-add-repository ppa:ondrej/php && \
     apt-get update && \
-    apt-get -y -f install wget lighttpd php7.0-cgi php7.0-gd php7.0-ldap nano iputils-ping build-essential php-mbstring php7.0-xml net-tools telnet && \
+    apt-get -y -f install wget lighttpd php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath nano iputils-ping build-essential net-tools telnet && \
     apt-get clean autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
