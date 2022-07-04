@@ -1,4 +1,4 @@
-FROM phusion/baseimage:focal-1.0.0
+FROM phusion/baseimage:jammy-1.0.0
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     rm -rf /var/lib/{apt,dpkg,cache,log}
 
 # Download & check & deploy dokuwiki & cleanup
-RUN wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz" && \
+RUN wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-rc.tgz" && \
     mkdir /dokuwiki && \
     tar -zxf dokuwiki.tgz -C /dokuwiki --strip-components 1 && \
     rm dokuwiki.tgz

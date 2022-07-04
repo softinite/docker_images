@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build -t softinite/dokuwiki .
+DOCKER_BUILDKIT=1 docker build -t softinite/dokuwiki:2.0.1 .
