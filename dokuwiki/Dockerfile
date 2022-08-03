@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     rm -rf /var/lib/{apt,dpkg,cache,log}
 
 # Download & check & deploy dokuwiki & cleanup
-RUN wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-rc.tgz" && \
+RUN echo "Building Igor" && wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz" && \
     mkdir /dokuwiki && \
     tar -zxf dokuwiki.tgz -C /dokuwiki --strip-components 1 && \
     rm dokuwiki.tgz
