@@ -1,4 +1,4 @@
-FROM phusion/baseimage:jammy-1.0.1
+FROM phusion/baseimage:noble-1.0.0
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     rm -rf /var/lib/{apt,dpkg,cache,log}
 
 # Download & check & deploy dokuwiki & cleanup
-RUN echo "Building 2.0.8" && wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz" && \
+RUN echo "Building 2.0.9" && wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz" && \
     mkdir /dokuwiki && \
     tar -zxf dokuwiki.tgz -C /dokuwiki --strip-components 1 && \
     rm dokuwiki.tgz
@@ -33,7 +33,7 @@ RUN chown -R www-data:www-data /dokuwiki
 # Configure lighttpd
 ADD dokuwiki.conf /etc/lighttpd/conf-available/20-dokuwiki.conf
 RUN lighty-enable-mod dokuwiki fastcgi accesslog
-RUN mkdir /var/run/lighttpd && chown www-data:www-data /var/run/lighttpd
+RUN mkdir -p /var/run/lighttpd && chown www-data:www-data /var/run/lighttpd
 EXPOSE 80
 
 RUN mkdir /etc/service/doku
