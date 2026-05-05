@@ -1,4 +1,4 @@
-FROM phusion/baseimage:noble-1.0.2
+FROM phusion/baseimage:noble-1.0.3
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     rm -rf /var/lib/{apt,dpkg,cache,log}
 
 # Download & check & deploy dokuwiki & cleanup
-RUN echo "Building 2.0.11" && wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz" && \
+RUN echo "Building 2.0.12" && wget -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz" && \
     mkdir /dokuwiki && \
     tar -zxf dokuwiki.tgz -C /dokuwiki --strip-components 1 && \
     rm dokuwiki.tgz
@@ -23,6 +23,7 @@ RUN echo "Building 2.0.11" && wget -q -O /dokuwiki.tgz "https://download.dokuwik
 ADD info.php /dokuwiki/info.php
 ADD local.php /dokuwiki/conf/local.protected.php
 ADD users.php /dokuwiki/conf/users.auth.php
+ADD acl.auth.php /dokuwiki/conf/acl.auth.php
 ADD mime.conf /dokuwiki/conf/mime.local.conf
 RUN mkdir -p /dokuwiki/data && \
     mkdir -p /dokuwiki/data/pages && \
